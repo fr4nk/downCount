@@ -13,6 +13,8 @@
             
             }, options);
 
+        var local_texts = null;
+
         // Throw error if date is not set
         if (!settings.date) {
             $.error('Date is not defined.');
@@ -23,12 +25,34 @@
             $.error('Incorrect date format, it should look like this, 12/24/2012 12:00:00.');
         }
 
+        //load locale if set
         if(settings.locale) {
             //TODO: loading
             console.info('Load locale for ' + settings.locale);
+            loadLocale(settings.locale);
         } else {
             console.info('No locale- using default');
         }
+
+        function loadLocale(language) {
+            $.ajax({
+                url: 'locale/' + language + '.json', 
+                // success
+                success: function(data, status, request) {
+                    if(status === 'success') {
+                        local_texts = data;
+                    }
+                },
+                error: function() {
+                    console.error('Locale for language not found.');
+                }
+        
+            }).complete(() => {
+                // start
+                countdown();}
+            );
+        }
+
         // Save container
         var container = this;
 
@@ -92,6 +116,12 @@
                 ref_hours = (hours === 1) ? 'hour' : 'hours',
                 ref_minutes = (minutes === 1) ? 'minute' : 'minutes',
                 ref_seconds = (seconds === 1) ? 'second' : 'seconds';
+            if(local_texts) {
+                ref_days = local_texts[ref_days];
+                ref_hours = local_texts[ref_hours];
+                ref_minutes = local_texts[ref_minutes];
+                ref_seconds = local_texts[ref_seconds];
+            }
 
             // set to DOM
             container.find('.days').text(days);
