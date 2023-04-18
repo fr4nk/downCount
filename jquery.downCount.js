@@ -8,7 +8,9 @@
     $.fn.downCount = function (options, callback) {
         var settings = $.extend({
                 date: null,
-                offset: null
+                offset: null,
+                locale: null            
+            
             }, options);
 
         // Throw error if date is not set
@@ -21,6 +23,12 @@
             $.error('Incorrect date format, it should look like this, 12/24/2012 12:00:00.');
         }
 
+        if(settings.locale) {
+            //TODO: loading
+            console.info('Load locale for ' + settings.locale);
+        } else {
+            console.info('No locale- using default');
+        }
         // Save container
         var container = this;
 
