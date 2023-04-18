@@ -112,10 +112,11 @@
                 seconds = (String(seconds).length >= 2) ? seconds : '0' + seconds;
 
             // based on the date change the refrence wording
-            var ref_days = (days === 1) ? 'day' : 'days',
-                ref_hours = (hours === 1) ? 'hour' : 'hours',
-                ref_minutes = (minutes === 1) ? 'minute' : 'minutes',
-                ref_seconds = (seconds === 1) ? 'second' : 'seconds';
+            var ref_days = (days === '01') ? 'day' : 'days' ,
+                ref_hours = (hours === '01') ? 'hour': 'hours' ,
+                ref_minutes = (minutes === '01') ? 'minute' : 'minutes',
+                ref_seconds = (seconds === '01') ? 'second' : 'seconds';
+
             if(local_texts) {
                 ref_days = local_texts[ref_days];
                 ref_hours = local_texts[ref_hours];
