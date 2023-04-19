@@ -1,0 +1,10 @@
+{
+    "day":   "jour",
+    "days":  "jours",
+    "hour":  "heure",
+    "hours": "heures",
+    "minute": "minute",
+    "minutes": "minutes",
+    "second": "seconde",
+    "seconds": "secondes"
+}
